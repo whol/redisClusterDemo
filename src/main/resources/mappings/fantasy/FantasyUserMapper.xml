@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.FantasyUserDao">
+    <sql id="Base_Column_List_1" >
+         id, user_name, mobile, password, nick_name, email, reg_date, user_role, status, home_point
+    </sql>
+    <sql id="Base_Column_List_2" >
+        user_name, mobile, password, nick_name, email, reg_date, user_role, status, home_point
+    </sql>
+
+    <resultMap id="BaseResultMap_1" type="com.example.demo.entity.FantasyUser" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="user_name" property="username" jdbcType="VARCHAR" />
+        <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="nick_name" property="nickname" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="reg_date" property="regDate"/>
+        <result column="user_role" property="userRole" jdbcType="TINYINT" />
+        <result column="status" property="status" jdbcType="TINYINT" />
+        <result column="home_point" property="homePoint" jdbcType="INTEGER" />
+    </resultMap>
+
+    <!-- 查询条件 -->
+    <sql id="Example_Where_Clause_1">
+        where 1=1
+        <if test="username != null and username != ''" >
+            and user_name like CONCAT('%',#{username},'%')
+        </if>
+        <if test="mobile != null and mobile != ''" >
+            and mobile like CONCAT('%',#{mobile},'%')
+        </if>
+        <if test="nickname != null and nickname != ''" >
+            and nick_name like CONCAT('%',#{nickname},'%')
+        </if>
+        <if test="email != null and email != ''" >
+            and email like CONCAT('%',#{email},'%')
+        </if>
+    </sql>
+
+    <!-- 检查用户是否存在，可检测用户名、昵称、手机号、邮箱地址 -->
+    <select id="checkFantasyUser" parameterType="FantasyUser" resultType="Integer">
+        select count(1) from fantasy_user
+        <include refid="Example_Where_Clause_1"/>
+    </select>
+
+</mapper>

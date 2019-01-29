@@ -1,0 +1,26 @@
+server:
+  port: 80
+  servlet:
+    context-path: /demo
+
+
+spring:
+  aop:
+    auto: true
+  #数据库的配置
+  datasource:
+    druid:
+      url: jdbc:mysql://47.99.195.156:3307/fantasy?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true
+      username: fantasy
+      password: myfantasy19851210
+      pool-name: huanzhidadi-fantasy-pool
+
+      driver-class-name: com.mysql.jdbc.Driver
+      initial-size: 5
+      max-active: 20
+      max-wait: 10000
+      validation-query: SELECT 1 FROM DUAL
+#mybatis的配置
+mybatis:
+  mapper-locations: classpath:/mappings/**/*.xml
+  type-aliases-package: com.example.demo
