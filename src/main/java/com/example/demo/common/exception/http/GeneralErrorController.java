@@ -6,8 +6,8 @@ import com.example.demo.common.http.ResourceLocator;
 import com.example.demo.common.utils.Constants;
 import com.example.demo.common.utils.JSONUtils;
 import com.example.demo.common.utils.LocaleMessageSourceUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.*;
@@ -52,14 +52,13 @@ import java.util.Map;
  * @author zhuanghd 根据RESTful API规范实现统一异常消息封装
  * @since 0.0.1
  */
+@Slf4j
 //@Controller()
 public class GeneralErrorController extends AbstractErrorController implements ApplicationContextAware {
 
     private static final String DEFAULT_WELCOME_PAGE = "index.html";
 
     private static GeneralErrorController generalErrorController;
-
-    private static final Logger LOGGER = Logger.getLogger(GeneralErrorController.class);
 
     /**
      * Error Attributes in the Application
@@ -164,8 +163,8 @@ public class GeneralErrorController extends AbstractErrorController implements A
                 // 请求路径不存在，尝试访问欢迎页面
                 String welcomePage = requestURL + getWelcomePage();
 
-                if (LOGGER.isDebugEnabled()) {
-                    LOGGER.debug("尝试访问欢迎页面：" + welcomePage);
+                if (log.isDebugEnabled()) {
+                    log.debug("尝试访问欢迎页面：" + welcomePage);
                 }
 
                 if (resourceLocator.getResource(request, welcomePage) != null) {
@@ -185,7 +184,7 @@ public class GeneralErrorController extends AbstractErrorController implements A
                     errorCode = ((GeneralException)error).getErrorCode();
                 }
                 result.put("exception", error.getClass());
-                LOGGER.error(error.getMessage(), error);
+                log.error(error.getMessage(), error);
                 keepStatusCode = error instanceof KeepStatusExeption;
             }
         }

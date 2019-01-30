@@ -1,6 +1,6 @@
 package com.example.demo.common.http;
 
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +18,8 @@ import java.util.List;
  * @author zhuanghd
  * @author Zav Deng/dengzf@asiainfo.com
  * */
+@Slf4j
 public class MethodReturnValueHandlerFactoryBean implements ApplicationContextAware, InitializingBean {
-
-    private static final Logger LOGGER = Logger.getLogger(MethodReturnValueHandlerFactoryBean.class);
 
     @Autowired
     private RequestMappingHandlerAdapter adapter;
@@ -30,7 +29,7 @@ public class MethodReturnValueHandlerFactoryBean implements ApplicationContextAw
     @Override
     public void afterPropertiesSet() throws Exception {
         adapter.setReturnValueHandlers(decorateHandlers(new ArrayList<>(adapter.getReturnValueHandlers())));
-        LOGGER.info("完成统一消息封装对象初始化");
+        log.info("完成统一消息封装对象初始化");
     }
 
     private List<HandlerMethodReturnValueHandler> decorateHandlers(List<HandlerMethodReturnValueHandler> handlers)

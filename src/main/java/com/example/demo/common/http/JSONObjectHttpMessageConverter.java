@@ -9,7 +9,7 @@ import com.example.demo.common.utils.TypeUtils;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.core.ResolvableType;
@@ -33,9 +33,8 @@ import java.nio.charset.Charset;
  *
  * Created by Zav Deng/dengzf@asiainfo.com on 17-3-7.
  */
+@Slf4j
 public class JSONObjectHttpMessageConverter extends AbstractHttpMessageConverter<Object> {
-
-    private static final Logger LOGGER = Logger.getLogger(JSONObjectHttpMessageConverter.class);
 
     public static final Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
 

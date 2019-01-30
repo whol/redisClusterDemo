@@ -1,7 +1,6 @@
 package com.example.demo.common.http;
 
-//import com.cmos.common.web.upload.config.StorageConfig;
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -21,9 +20,8 @@ import java.io.IOException;
  * </pre>
  * Created by Zav Deng/dengzf@asiainfo.com on 17-2-9.
  */
+@Slf4j
 public class ResourceFileFilter extends ResourceLocator implements Filter, ApplicationContextAware {
-
-    private static final Logger LOGGER = Logger.getLogger(ResourceFileFilter.class);
 
     private ApplicationContext applicationContext;
 

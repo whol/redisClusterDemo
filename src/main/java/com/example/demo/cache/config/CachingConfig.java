@@ -1,8 +1,6 @@
 package com.example.demo.cache.config;
 
 import com.example.demo.cache.cacheException.CMOSCacheBaseException;
-import com.example.demo.cache.config.LocalCacheConfig;
-import com.example.demo.cache.config.RouteConfig;
 import com.example.demo.cache.guava.LocalCacheFactory;
 import com.example.demo.cache.ha.ClusterStateDetectApi;
 import com.example.demo.cache.ha.ClusterStateDetectCache;
@@ -12,7 +10,7 @@ import com.example.demo.cache.route.aspect.AnnotationCacheRouteAspect;
 import com.example.demo.cache.service.impl.RedisCacheServiceImpl;
 import com.example.demo.cache.ttl.aspect.AnnotationCacheTTLAspect;
 import com.example.demo.cache.util.CacheConstants.PROPERTY_KYE;
-import com.cmos.cfg.core.ConfigHelper;
+import com.example.demo.config.ConfigHelper;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;

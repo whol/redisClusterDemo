@@ -3,7 +3,7 @@ package com.example.demo.cache.redis;
 import com.example.demo.cache.cacheException.CMOSCacheBaseException;
 import com.example.demo.cache.cacheException.CachePropertyException;
 import com.example.demo.cache.cacheException.RouteException;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;

@@ -1,6 +1,6 @@
 package com.example.demo.common.http;
 
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.MediaType;
@@ -29,9 +29,8 @@ import java.util.List;
  *
  * Created by Zav Deng/dengzf@asiainfo.com on 17-3-7.
  */
+@Slf4j
 public abstract class ResourceLocator {
-
-    private static final Logger LOGGER = Logger.getLogger(ResourceLocator.class);
 
     public static final String DEFAULT_WELCOME_PAGE = "index.html";
 
@@ -108,8 +107,8 @@ public abstract class ResourceLocator {
         path = processPath(getRealPath(contextPath, path));
 
         if (!StringUtils.hasText(path) || isInvalidPath(path)) {
-            if (LOGGER.isTraceEnabled()) {
-                LOGGER.trace("Ignoring invalid resource path [" + path + "]");
+            if (log.isTraceEnabled()) {
+                log.trace("Ignoring invalid resource path [" + path + "]");
             }
             return null;
         }
@@ -117,8 +116,8 @@ public abstract class ResourceLocator {
         if (path.contains("%")) {
             try {
                 if (isInvalidPath(URLDecoder.decode(path, "UTF-8"))) {
-                    if (LOGGER.isTraceEnabled()) {
-                        LOGGER.trace("Ignoring invalid resource path with escape sequences [" + path + "].");
+                    if (log.isTraceEnabled()) {
+                        log.trace("Ignoring invalid resource path with escape sequences [" + path + "].");
                     }
                     return null;
                 }
@@ -157,8 +156,8 @@ public abstract class ResourceLocator {
                     return path;
                 }
                 path = slash ? "/" + path.substring(i) : path.substring(i);
-                if (LOGGER.isTraceEnabled()) {
-                    LOGGER.trace("Path after trimming leading '/' and control characters: " + path);
+                if (log.isTraceEnabled()) {
+                    log.trace("Path after trimming leading '/' and control characters: " + path);
                 }
                 return path;
             }
@@ -167,20 +166,20 @@ public abstract class ResourceLocator {
     }
 
     protected boolean isInvalidPath(String path) {
-        if (LOGGER.isTraceEnabled()) {
-            LOGGER.trace("Applying \"invalid path\" checks to path: " + path);
+        if (log.isTraceEnabled()) {
+            log.trace("Applying \"invalid path\" checks to path: " + path);
         }
         if (path.contains("WEB-INF") || path.contains("META-INF")) {
-            if (LOGGER.isTraceEnabled()) {
-                LOGGER.trace("Path contains \"WEB-INF\" or \"META-INF\".");
+            if (log.isTraceEnabled()) {
+                log.trace("Path contains \"WEB-INF\" or \"META-INF\".");
             }
             return true;
         }
         if (path.contains(":/")) {
             String relativePath = (path.charAt(0) == '/' ? path.substring(1) : path);
             if (ResourceUtils.isUrl(relativePath) || relativePath.startsWith("url:")) {
-                if (LOGGER.isTraceEnabled()) {
-                    LOGGER.trace("Path represents URL or has \"url:\" prefix.");
+                if (log.isTraceEnabled()) {
+                    log.trace("Path represents URL or has \"url:\" prefix.");
                 }
                 return true;
             }
@@ -188,8 +187,8 @@ public abstract class ResourceLocator {
         if (path.contains("..")) {
             path = StringUtils.cleanPath(path);
             if (path.contains("../")) {
-                if (LOGGER.isTraceEnabled()) {
-                    LOGGER.trace("Path contains \"../\" after call to StringUtils#cleanPath.");
+                if (log.isTraceEnabled()) {
+                    log.trace("Path contains \"../\" after call to StringUtils#cleanPath.");
                 }
                 return true;
             }

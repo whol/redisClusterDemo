@@ -1,7 +1,6 @@
 package com.example.demo.common.exception.autoconfig;
 
-import org.apache.log4j.Logger;
-import org.springframework.context.annotation.ComponentScan;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
@@ -14,12 +13,11 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration()
 //@ComponentScan(basePackages = "com.cmos.common.exception.*")
 @PropertySource(value = "exception", name="exception", factory = GeneralExceptionPropertySourceFactory.class)
+@Slf4j
 public class GeneralExceptionAutoConfig {
 
-    private static final Logger LOGGER = Logger.getLogger(GeneralExceptionAutoConfig.class);
-
     public GeneralExceptionAutoConfig() {
-        LOGGER.info("统一异常处理模块配置初始化...");
+        log.info("统一异常处理模块配置初始化...");
     }
 
 }

@@ -2,8 +2,8 @@ package com.example.demo.common.locale;
 
 import com.alibaba.dubbo.rpc.RpcContext;
 import com.example.demo.common.utils.LocaleMessageSourceUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -15,8 +15,8 @@ import java.util.Locale;
 /**
  * Created by LIUYAN on 2018/3/8.
  */
+@Slf4j
 public class LocaleFilter implements Filter {
-    private static final Logger LOGGER = Logger.getLogger(LocaleFilter.class);
     private static Locale defaultLanaguage = new Locale("zh", "CN");
     private ApplicationContext applicationContext;
     @Override

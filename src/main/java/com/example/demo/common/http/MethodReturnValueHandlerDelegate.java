@@ -7,7 +7,7 @@ import com.example.demo.common.utils.ResultFormatter;
 import com.example.demo.common.utils.TrackableValueFormatter;
 import com.example.demo.common.utils.ValueFormatter;
 import com.github.pagehelper.PageInfo;
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.context.ApplicationContext;
@@ -26,9 +26,8 @@ import java.util.Collections;
 /**
  * ResponseBody包装类，返回Result
  */
+@Slf4j
 public class MethodReturnValueHandlerDelegate implements HandlerMethodReturnValueHandler {
-
-    private static final Logger LOGGER = Logger.getLogger(MethodReturnValueHandlerDelegate.class);
 
     private final ApplicationContext applicationContext;
 

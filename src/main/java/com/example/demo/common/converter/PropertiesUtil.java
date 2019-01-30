@@ -1,6 +1,6 @@
 package com.example.demo.common.converter;
 
-import com.cmos.cfg.core.ConfigHelper;
+import com.example.demo.config.ConfigHelper;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertiesPropertySource;

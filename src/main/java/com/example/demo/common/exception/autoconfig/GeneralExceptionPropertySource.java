@@ -1,7 +1,6 @@
 package com.example.demo.common.exception.autoconfig;
 
-
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.PropertySource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -17,9 +16,8 @@ import java.util.Properties;
  * @author Zifeng.D 2016-12-02 创建
  * @since 0.0.1
  */
+@Slf4j
 public class GeneralExceptionPropertySource extends PropertySource<GeneralExceptionPropertySource> {
-
-    private static final Logger LOGGER = Logger.getLogger(GeneralExceptionPropertySource.class);
 
     private static final String USERDEF_ERROR_RESOURCE_PATH = "/exception/errors.properties";
 
@@ -47,7 +45,7 @@ public class GeneralExceptionPropertySource extends PropertySource<GeneralExcept
             if (inputStream != null)
                 properties.load(new InputStreamReader(inputStream, FILE_ENCODING));
         } catch (IOException e) {
-            LOGGER.warn("加载错误码映射配置失败", e);
+            log.warn("加载错误码映射配置失败", e);
         } finally {
             if (inputStream != null)
                 inputStream.close();

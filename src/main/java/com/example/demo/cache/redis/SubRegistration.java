@@ -1,6 +1,6 @@
 package com.example.demo.cache.redis;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import redis.clients.jedis.BinaryJedisPubSub;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPubSub;

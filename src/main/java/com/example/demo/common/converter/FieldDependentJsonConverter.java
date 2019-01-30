@@ -1,7 +1,7 @@
 package com.example.demo.common.converter;
 
 import com.example.demo.common.utils.JSONUtils;
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 
 import java.lang.reflect.Field;
@@ -10,9 +10,8 @@ import java.util.regex.Pattern;
 /**
  * Created by Zav Deng/dengzf@asiainfo.com on 17-8-9.
  */
+@Slf4j
 public class FieldDependentJsonConverter extends AbstractAlienConverter {
-
-    private static final Logger LOGGER = Logger.getLogger(FieldDependentJsonConverter.class);
 
     private static final Pattern jsonPattern = Pattern.compile("^(\\{.+\\}|\\[.*\\])$", Pattern.MULTILINE | Pattern.DOTALL);
 
@@ -26,7 +25,7 @@ public class FieldDependentJsonConverter extends AbstractAlienConverter {
                 Object value = field.get(alienObj);
                 packJSONField(field.getName(), value, jsonObject);
             } catch (IllegalAccessException e) {
-                LOGGER.warn("access field error: " + field.getName(), e);
+                log.warn("access field error: " + field.getName(), e);
             } finally {
                 field.setAccessible(false);
             }
