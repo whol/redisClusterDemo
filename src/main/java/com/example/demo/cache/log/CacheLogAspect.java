@@ -24,7 +24,7 @@ public class CacheLogAspect {
     /**
      * 切点：针对RedisCacheServiceImpl中的方法
      */
-    @Pointcut("execution(* com.cmos.cache.service.impl.*.*(..))")
+    @Pointcut("execution(* com.example.demo.service.impl.*.*(..))")
     private void doLog() {
     }
 
@@ -38,7 +38,7 @@ public class CacheLogAspect {
     /**
      * 切点：针对config、ha、redis、route、PropertiesUtil中的方法和有NoKey注解的方法
      */
-    @Pointcut("execution(* com.cmos.cache.config.*.*(..)) or execution(* com.cmos.cache.ha.*.*(..)) or execution(* com.cmos.cache.redis.*.*(..)) or execution(* com.cmos.cache.route.*.*(..)) or @annotation(com.example.demo.cache.log.NoKey)")
+    @Pointcut("execution(* com.example.demo.config.*.*(..)) || execution(* com.cmos.cache.ha.*.*(..)) || execution(* com.cmos.cache.redis.*.*(..)) || execution(* com.cmos.cache.route.*.*(..)) || @annotation(com.example.demo.cache.log.NoKey)")
     private void doNoKeyLog() {
     }
 

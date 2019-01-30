@@ -36,7 +36,7 @@ public final class InetAddressUtils {
 	public static String getLocalInetAddress() {
 		List<String> ips = getLocalInetAddresses();
 		if(ips != null && !ips.isEmpty()){
-			return ips.get(ips.size()-1);
+			return ips.get(ips.size()-1);//每次都是外网地址吗？
 		}
 		else{
 			return "";
@@ -60,7 +60,7 @@ public final class InetAddressUtils {
 				while (ips.hasMoreElements()) {
 					addr = ips.nextElement();
 					if (addr.isSiteLocalAddress() && !addr.isLoopbackAddress() // 127.开头的都是lookback地址
-							&& addr.getHostAddress().indexOf(":") == -1) {
+							&& addr.getHostAddress().indexOf(":") == -1) {//带:的是ipv6地址
 						addrList.add(addr.getHostAddress());
 					}
 				}
@@ -72,4 +72,8 @@ public final class InetAddressUtils {
 		return addrList;
 	}
 
+	public static void main(String[] args) {
+		String ip = getLocalInetAddress();
+		log.info(ip);
+	}
 }
