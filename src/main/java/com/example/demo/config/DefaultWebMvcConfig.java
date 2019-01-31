@@ -1,7 +1,6 @@
 package com.example.demo.config;
 
-import com.example.demo.common.exception.autoconfig.EnableGeneralException;
-import com.example.demo.common.utils.Constants;
+import com.example.demo.common.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +27,6 @@ import java.util.List;
  * Created by Zav Deng/dengzf@asiainfo.com on 17-1-12.
  */
 @Configuration
-@EnableGeneralException
 @ComponentScan(basePackages = {"com.example.demo"})
 @EnableWebMvc
 public class DefaultWebMvcConfig implements WebMvcConfigurer {

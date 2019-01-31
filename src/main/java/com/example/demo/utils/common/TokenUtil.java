@@ -1,7 +1,7 @@
 package com.example.demo.utils.common;
 
-import com.example.demo.common.utils.Constants;
 import com.example.demo.cache.service.CacheServiceFactory;
+import com.example.demo.common.Constants;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

@@ -1,8 +1,8 @@
 package com.example.demo.intercepter;
 
 import com.example.demo.beans.common.UserInfo;
+import com.example.demo.common.Constants;
 import com.example.demo.utils.annotation.UserType;
-import com.example.demo.common.utils.Constants;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;

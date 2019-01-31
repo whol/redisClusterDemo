@@ -3,8 +3,8 @@ package com.example.demo.intercepter;
 /*import com.alibaba.dubbo.config.annotation.Reference;
 import com.cmos.net.iservice.system.IUserSV;*/
 import com.example.demo.beans.common.UserInfo;
+import com.example.demo.common.Constants;
 import com.example.demo.utils.annotation.LoginRequired;
-import com.example.demo.common.utils.Constants;
 import com.example.demo.utils.common.TokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
