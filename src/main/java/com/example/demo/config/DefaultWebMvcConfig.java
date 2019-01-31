@@ -1,10 +1,6 @@
 package com.example.demo.config;
 
-import com.example.demo.common.annotation.EnableReturnValueHandler;
 import com.example.demo.common.exception.autoconfig.EnableGeneralException;
-import com.example.demo.common.http.JSONObjectHttpMessageConverter;
-import com.example.demo.common.http.ResourceFileFilter;
-import com.example.demo.common.http.ServiceInputArgumentResolver;
 import com.example.demo.common.locale.LocaleFilter;
 import com.example.demo.common.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +16,6 @@ import org.springframework.http.converter.ResourceHttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -35,7 +30,6 @@ import java.util.List;
  */
 @Configuration
 @EnableGeneralException
-@EnableReturnValueHandler
 @ComponentScan(basePackages = {"com.example.demo"})
 @EnableWebMvc
 public class DefaultWebMvcConfig implements WebMvcConfigurer {
@@ -51,14 +45,6 @@ public class DefaultWebMvcConfig implements WebMvcConfigurer {
         return filterBean;
     }
 
-    @Bean
-    public FilterRegistrationBean jsonFileFilterRegistrationBean() {
-        FilterRegistrationBean filterBean = new FilterRegistrationBean();
-        filterBean.setFilter( new ResourceFileFilter());
-        filterBean.addUrlPatterns("/*");
-        filterBean.setOrder(-1);
-        return filterBean;
-    }
 
     @Bean
     public FilterRegistrationBean localeFilterRegistrationBean() {
@@ -80,14 +66,8 @@ public class DefaultWebMvcConfig implements WebMvcConfigurer {
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(new StringHttpMessageConverter(Charset.forName(getCharsetName())));
-        converters.add(new JSONObjectHttpMessageConverter());
         converters.add(new ObjectToStringHttpMessageConverter(new DefaultFormattingConversionService(), Charset.forName(getCharsetName())));
         converters.add(new ResourceHttpMessageConverter());
-    }
-
-    @Override
-    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new ServiceInputArgumentResolver());
     }
 
     @Override

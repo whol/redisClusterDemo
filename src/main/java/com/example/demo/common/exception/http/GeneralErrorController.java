@@ -2,7 +2,6 @@ package com.example.demo.common.exception.http;
 
 import com.example.demo.common.exception.GeneralException;
 import com.example.demo.common.exception.KeepStatusExeption;
-import com.example.demo.common.http.ResourceLocator;
 import com.example.demo.common.utils.Constants;
 import com.example.demo.common.utils.JSONUtils;
 import com.example.demo.common.utils.LocaleMessageSourceUtil;
@@ -80,7 +79,6 @@ public class GeneralErrorController extends AbstractErrorController implements A
 
     private ApplicationContext applicationContext;
 
-    private ResourceLocator resourceLocator;
 
     private final static String LOGGER_EXCEPTION_SWITCH = "cmos.logger.errorlog.enable";
 
@@ -110,12 +108,6 @@ public class GeneralErrorController extends AbstractErrorController implements A
         super(errorAttributes, errorViewResolvers);
         Assert.notNull(errorProperties, "ErrorProperties must not be null");
         this.errorProperties = errorProperties;
-        this.resourceLocator = new ResourceLocator() {
-            @Override
-            public ResourceLoader getResourceLoader() {
-                return applicationContext;
-            }
-        };
     }
 
     //@RequestMapping(path = ERROR_PATH, produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
@@ -167,12 +159,7 @@ public class GeneralErrorController extends AbstractErrorController implements A
                     log.debug("尝试访问欢迎页面：" + welcomePage);
                 }
 
-                if (resourceLocator.getResource(request, welcomePage) != null) {
-                    // 重定向至欢迎页面，刷新HTTP响应状态码
-                    response.sendRedirect(welcomePage);
-                } else {
-                    response.sendError(404);
-                }
+                response.sendRedirect(welcomePage);
                 return;
             }
         } else {

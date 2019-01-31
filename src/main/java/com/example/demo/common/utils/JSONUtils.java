@@ -1,9 +1,5 @@
 package com.example.demo.common.utils;
 
-import com.example.demo.beans.common.GenericBean;
-import com.example.demo.beans.common.JsonBean;
-import com.example.demo.beans.common.JsonConvertException;
-import com.example.demo.common.collections.DataSet;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -53,15 +49,4 @@ public class JSONUtils {
         return JSONFormatter.format(obj, new DummyValueFormatter());
     }
 
-    public static <T extends JsonBean<?>> Object toJSON(Object obj, ValueFormatter valueFormatter) {
-        return JSONFormatter.format(obj, valueFormatter);
-    }
-
-    public static <T extends JsonBean<?>> T toJavaBean(JSONObject obj, Class<T> typeClass) throws JsonConvertException {
-        return GenericBean.fromJSON(obj, typeClass);
-    }
-
-    public static <T extends JsonBean<?>> DataSet<T> toDataSet(JSONArray arr, Class<T> typeClass) throws JsonConvertException {
-        return DataSet.fromJSON(arr, typeClass);
-    }
 }

@@ -1,6 +1,5 @@
 package com.example.demo.utils.annotation;
 
-import com.example.demo.beans.common.GenericBean;
 import com.example.demo.common.utils.DummyValueFormatter;
 import com.example.demo.common.utils.ValueFormatter;
 
@@ -14,7 +13,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface JsonifyStrategy {
 
-    int strategy() default GenericBean.STRATEGY_FIELD;
+    int strategy();
 
     Class<? extends ValueFormatter> formatter() default DummyValueFormatter.class;
 

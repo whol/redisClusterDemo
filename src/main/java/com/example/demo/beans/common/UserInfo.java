@@ -2,7 +2,7 @@ package com.example.demo.beans.common;
 
 import com.example.demo.entity.FantasyUser;
 
-public class UserInfo extends GenericBean {
+public class UserInfo {
     private static final long serialVersionUID = 1109105654966370300L;
     private boolean isLogin;
     private String mainRole;
