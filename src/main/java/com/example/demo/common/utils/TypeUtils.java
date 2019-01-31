@@ -1,6 +1,6 @@
 package com.example.demo.common.utils;
 
-import com.cmos.common.exception.IOResourceException;
+import com.example.demo.common.exception.IOResourceException;
 
 import java.lang.reflect.Constructor;
 import java.math.BigDecimal;

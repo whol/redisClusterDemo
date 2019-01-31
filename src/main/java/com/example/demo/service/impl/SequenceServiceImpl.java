@@ -21,7 +21,7 @@ public class SequenceServiceImpl implements SequenceService {
     //自增长的值
     private final Long AUTO_INCREMENT = 1L;
     //定义自增长最大位数
-    private final Integer DIGIT_LENGTH = 2;
+    private final Integer DIGIT_LENGTH = 4;
 
     private DateFormat dfDay = new SimpleDateFormat("yyyyMMdd");
     private DateFormat dfTimestamp = new SimpleDateFormat("yyyyMMddHHmm");

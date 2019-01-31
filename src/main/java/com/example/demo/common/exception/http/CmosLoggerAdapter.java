@@ -1,7 +1,7 @@
 package com.example.demo.common.exception.http;
 
-import com.cmos.common.exception.GeneralException;
-import com.cmos.common.exception.util.ErrorStackBuilder;
+import com.example.demo.common.exception.GeneralException;
+import com.example.demo.common.exception.util.ErrorStackBuilder;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;

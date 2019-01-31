@@ -1,7 +1,7 @@
 package com.example.demo.common.exception.http;
 
-import com.cmos.common.exception.GeneralException;
-import com.cmos.common.exception.KeepStatusExeption;
+import com.example.demo.common.exception.GeneralException;
+import com.example.demo.common.exception.KeepStatusExeption;
 import com.example.demo.common.http.ResourceLocator;
 import com.example.demo.common.utils.Constants;
 import com.example.demo.common.utils.JSONUtils;

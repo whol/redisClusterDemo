@@ -1,6 +1,7 @@
 package com.example.demo.beans.common;
 
-import com.cmos.common.exception.GeneralException;
+
+import com.example.demo.common.exception.GeneralException;
 
 /**
  * JSON格式化异常

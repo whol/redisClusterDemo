@@ -1,6 +1,7 @@
 package com.example.demo.common.converter;
 
-import com.cmos.common.exception.GeneralException;
+
+import com.example.demo.common.exception.GeneralException;
 
 /**
  * Created by Zav Deng/dengzf@asiainfo.com on 17-8-9.
