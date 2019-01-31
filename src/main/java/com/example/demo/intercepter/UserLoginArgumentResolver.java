@@ -1,6 +1,6 @@
 package com.example.demo.intercepter;
 
-import com.example.demo.beans.system.User;
+import com.example.demo.entity.FantasyUser;
 import com.example.demo.utils.annotation.LoginUser;
 import com.example.demo.common.utils.Constants;
 import org.springframework.core.MethodParameter;
@@ -17,13 +17,13 @@ public class UserLoginArgumentResolver implements HandlerMethodArgumentResolver 
 
     @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
-        return methodParameter.getParameterType().isAssignableFrom(User.class)
+        return methodParameter.getParameterType().isAssignableFrom(FantasyUser.class)
                 && methodParameter.hasParameterAnnotation(LoginUser.class);
     }
 
     @Override
     public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory) throws Exception {
-        User user = (User) nativeWebRequest.getAttribute(Constants.USER_TYPE_SESSION,
+        FantasyUser user = (FantasyUser) nativeWebRequest.getAttribute(Constants.USER_TYPE_SESSION,
                 RequestAttributes.SCOPE_REQUEST);
         if (null != user) {
             return user;

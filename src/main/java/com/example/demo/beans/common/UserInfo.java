@@ -1,20 +1,18 @@
 package com.example.demo.beans.common;
 
-import com.example.demo.beans.system.User;
-import com.example.demo.beans.system.UserFlags;
+import com.example.demo.entity.FantasyUser;
 
 public class UserInfo extends GenericBean {
     private static final long serialVersionUID = 1109105654966370300L;
     private boolean isLogin;
     private String mainRole;
     private String userType;
-    private User user;
-    private UserFlags userFlags;
+    private FantasyUser user;
 
     public UserInfo() {
     }
 
-    public UserInfo(boolean isLogin, String mainRole, User user) {
+    public UserInfo(boolean isLogin, String mainRole, FantasyUser user) {
         this.isLogin = isLogin;
         this.mainRole = mainRole;
         this.user = user;
@@ -36,11 +34,11 @@ public class UserInfo extends GenericBean {
         this.mainRole = mainRole;
     }
 
-    public User getUser() {
+    public FantasyUser getUser() {
         return this.user;
     }
 
-    public void setUser(User user) {
+    public void setUser(FantasyUser user) {
         this.user = user;
     }
 
@@ -50,13 +48,5 @@ public class UserInfo extends GenericBean {
 
     public void setUserType(String userType) {
         this.userType = userType;
-    }
-
-    public UserFlags getUserFlags() {
-        return this.userFlags;
-    }
-
-    public void setUserFlags(UserFlags userFlags) {
-        this.userFlags = userFlags;
     }
 }

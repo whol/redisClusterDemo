@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 /*import com.alibaba.dubbo.config.annotation.Reference;
 import com.cmos.net.iservice.param.IParamSV;
 import com.cmos.net.iservice.system.IUserSV;*/
-import com.example.demo.beans.param.Param;
 import com.example.demo.entity.FantasyUser;
 import com.example.demo.service.FantasyUserService;
 import com.example.demo.service.SequenceService;
@@ -67,19 +66,6 @@ public class AuthController {
     public ResponseEntity generateToken(@RequestParam(name="appId") String appId, @RequestParam(name="appSecret") String appSecret)
     throws Exception {
         //校验appId和appSecret是否和库存的一致
-        Param param = null;
-        try {
-            param = new Param();//paramSV.getParamByTypeIdDataId("type", appId);
-        } catch (Exception e) {
-            log.error("获取参数异常", e);
-        }
-        if (null == param) {
-            throw new NullPointerException("1");
-        } else {
-            if (!StringUtils.equals(appSecret, param.getDataName())) {
-                throw new NullPointerException("2");
-            }
-        }
         String token = TokenUtil.generateToken();
         JSONObject data = new JSONObject();
         data.put(ConstantVar.ACCESS_TOKEN, token);
