@@ -1,7 +1,6 @@
 package com.example.demo.config;
 
 import com.example.demo.common.exception.autoconfig.EnableGeneralException;
-import com.example.demo.common.locale.LocaleFilter;
 import com.example.demo.common.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -42,16 +41,6 @@ public class DefaultWebMvcConfig implements WebMvcConfigurer {
         FilterRegistrationBean filterBean = new FilterRegistrationBean();
         filterBean.setFilter(new CharacterEncodingFilter(getCharsetName(), true, true));
         filterBean.addUrlPatterns("/*");
-        return filterBean;
-    }
-
-
-    @Bean
-    public FilterRegistrationBean localeFilterRegistrationBean() {
-        FilterRegistrationBean filterBean = new FilterRegistrationBean();
-        filterBean.setFilter( new LocaleFilter());
-        filterBean.addUrlPatterns("/*");
-        filterBean.setOrder(1);
         return filterBean;
     }
 

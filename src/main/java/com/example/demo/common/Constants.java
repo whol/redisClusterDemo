@@ -1,4 +1,4 @@
-package com.example.demo.common.utils;
+package com.example.demo.common;
 
 /**
  * <pre>
