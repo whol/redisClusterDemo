@@ -3,7 +3,6 @@ package com.example.demo.intercepter;
 /*import com.alibaba.dubbo.config.annotation.Reference;
 import com.cmos.net.iservice.system.IUserSV;*/
 import com.example.demo.beans.common.UserInfo;
-import com.example.demo.task.LogAsyncTask;
 import com.example.demo.utils.annotation.LoginRequired;
 import com.example.demo.common.utils.Constants;
 import com.example.demo.utils.common.TokenUtil;
@@ -57,10 +56,6 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         request.setAttribute(Constants.USER_TYPE_SESSION, userInfo);
 
         //token校验通过，记录用户操作日志
-        if (null != request.getHeader("deviceInfos")) {
-            LogAsyncTask logAsyncTask = getMapper(LogAsyncTask.class, request);
-            logAsyncTask.asyncSaveRecord(request, userInfo);
-        }
 
         //判断接口是否需要登录
         if (handler instanceof HandlerMethod) {

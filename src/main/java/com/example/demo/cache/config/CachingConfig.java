@@ -10,7 +10,6 @@ import com.example.demo.cache.route.aspect.AnnotationCacheRouteAspect;
 import com.example.demo.cache.service.impl.RedisCacheServiceImpl;
 import com.example.demo.cache.ttl.aspect.AnnotationCacheTTLAspect;
 import com.example.demo.cache.util.CacheConstants.PROPERTY_KYE;
-import com.example.demo.config.ConfigHelper;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
@@ -29,10 +28,12 @@ import org.springframework.util.StringUtils;
 import java.io.IOException;
 import java.util.*;
 
+import static com.example.demo.cache.config.CachingConfig.CONFIG_FILE;
+
 @Order(2)
 @Configuration
 @EnableCaching
-@PropertySource("classpath:" + com.example.demo.cache.config.CachingConfig.CONFIG_FILE)
+@PropertySource("classpath:" + CONFIG_FILE)
 /**
  * Spring Cache组件，集群监控组件配置
  */
@@ -77,10 +78,10 @@ public class CachingConfig {
      */
     @Bean(name = "genericObjectPoolConfig")
     public GenericObjectPoolConfig genericObjectPoolConfig() {
-        Environment amberEnv = ConfigHelper.getEnvironment();
+        /*Environment amberEnv = ConfigHelper.getEnvironment();
         if (amberEnv != null)
             env = amberEnv;
-
+*/
         long defaultMaxWaitmillis = -1;
         int defaultMaxTotal = 8;
         int defaultMinIdle = 0;
@@ -213,16 +214,12 @@ public class CachingConfig {
     @Bean
     public RouteConfig initRouteConfig(JedisClusterFactory jedisClusterFactory) {
         Properties props = null;
+        Resource resource = new ClassPathResource(CONFIG_FILE);
+        props = new Properties();
         try {
-            props = ConfigHelper.getProperties();
-        } catch (Exception e) {
-            Resource resource = new ClassPathResource(CONFIG_FILE);
-            props = new Properties();
-            try {
-                props.load(resource.getInputStream());
-            } catch (IOException e1) {
-                throw new CMOSCacheBaseException("读取配置文件出错", e1);
-            }
+            props.load(resource.getInputStream());
+        } catch (IOException e1) {
+            throw new CMOSCacheBaseException("读取配置文件出错", e1);
         }
 
         RouteConfig config = new RouteConfig();
