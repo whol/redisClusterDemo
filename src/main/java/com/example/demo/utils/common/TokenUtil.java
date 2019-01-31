@@ -19,6 +19,11 @@ public class TokenUtil {
 
     public static final SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.HS512;
 
+    /**
+     * 获取Claims信息
+     * @param token
+     * @return
+     */
     private static Claims getAllClaimsFromToken(String token) {
         if (StringUtils.isEmpty(token)) {
             return null;
